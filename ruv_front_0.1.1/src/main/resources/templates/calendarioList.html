@@ -30,14 +30,16 @@
 							<td th:text="${calendario.calendarioDescripcion}"></td>
 							<td th:text="${calendario.fechaInicio}"></td>
 							<td th:text="${calendario.fechaFin}"></td>
-							<td><a class="btn btn-primary">Editar</a></td>
-							<td><a class="btn btn-danger">Borrar</a></td>
+							<td><a th:href="@{editar/} + ${calendario.id}"
+								th:text="'Editar'"  class="btn btn-primary"></a></td>
+							<td><a  th:href="@{eliminar/} + ${calendario.id}"
+								th:text="'Eliminar'" class="btn btn-danger" ></a></td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="5"><a th:href="@{crear}"
-								class="btn btn-primary btn-block">Calendario Nuevo</a></td>
+							<td colspan="5"><a th:href="@{crearcalendario}" th:text="'Calendario Nuevo'" 
+								class="btn btn-primary btn-block"></a></td>
 						</tr>
 					</tfoot>
 				</table>

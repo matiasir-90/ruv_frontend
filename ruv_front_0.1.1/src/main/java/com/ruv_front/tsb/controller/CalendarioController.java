@@ -2,6 +2,7 @@ package com.ruv_front.tsb.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +22,6 @@ public class CalendarioController {
          model.addAttribute("calendarioList",getcalendario());
          return "calendarioList";
     }
-    @GetMapping("/crear")
-    public String CrearCalendario(Model model){	   	
-         model.addAttribute("calendarioList",getcalendario());
-         return "calendarioList";
-    }
 
     
     public List<CalendarioModel> getcalendario()
@@ -39,5 +35,21 @@ public class CalendarioController {
 
 	}
 
+	@GetMapping("/crearcalendario")
+	public String crearcalendario(Map<String, Object> model) {
+//		CalendarioModel calendario = new CalendarioModel();
+//		model.put("Calendario", calendario);
+//		model.put("accion", "guardar");
+
+		return "crearcalendario";
+	}
+
+	public CalendarioModel getcalendariobyid(int id) {
+	    String uri = "http://localhost:8181/calendario";
+		    RestTemplate restTemplate = new RestTemplate();
+		    uri=uri+"/${id}";
+		    CalendarioModel calendarioid = restTemplate.getForObject(uri, CalendarioModel.class);  
+		return calendarioid;
+	}
 
 }
