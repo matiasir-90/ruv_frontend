@@ -35,12 +35,8 @@ public class CalendarioController {
 
 	}
 
-	@GetMapping("/crearcalendario")
-	public String crearcalendario(Map<String, Object> model) {
-//		CalendarioModel calendario = new CalendarioModel();
-//		model.put("Calendario", calendario);
-//		model.put("accion", "guardar");
-
+	@GetMapping("/calendario/crearcalendario")
+	public String crearcalendario(Model model) {
 		return "crearcalendario";
 	}
 
