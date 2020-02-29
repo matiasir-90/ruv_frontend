@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+</head>
+<body>
+	<header th:replace="layout/layout::two" class="bg-dark"> </header>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				<h3>Lista de calendarios</h3>
+			</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Descripcion</th>
+							<th>Fecha Inicio</th>
+							<th>Fecha Fin</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="calendario: ${calendarioList}">
+							<td th:text="${calendario.id}"></td>
+							<td th:text="${calendario.calendarioDescripcion}"></td>
+							<td th:text="${calendario.fechaInicio}"></td>
+							<td th:text="${calendario.fechaFin}"></td>
+							<td><a class="btn btn-outline-primary">Editar</a></td>
+							<td><a class="btn btn-outline-danger">Borrar</a></td>
+						</tr>
+					</tbody>
+					<tfoot>
+
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout::footer" class="bg-dark"></footer>
+</body>
+</html>

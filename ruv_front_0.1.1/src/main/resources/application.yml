@@ -1,0 +1,24 @@
+aplicacion:
+  nombre: Tutorial Spring Boot
+   
+server:
+  port: 9876
+  servlet:
+    context-path: /miapp
+  
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/pruebas?serverTimezone=UTC
+    username: root
+    password: 
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    hibernate:
+      ddl-auto: none
+      
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
