@@ -2,6 +2,7 @@ package com.ruv_front.tsb.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,8 @@ import com.ruv_front.tsb.Model.CalendarioModel;
 @Controller
 @RequestMapping(value = "/calendario" )
 public class CalendarioController {
-	
+
+	public static final String VISTA_FORMULARIO = "crearcalendario";
     @GetMapping
     public String ViewCalendario(Model model){	   	
          model.addAttribute("calendarioList",getcalendario());
@@ -34,13 +36,16 @@ public class CalendarioController {
 
 	}
 
-	@GetMapping("/")
-	public String showUpdateForm(Model model) {
-		model.addAttribute("calendario", getcalendario());
-		return "index";
-	}
-	}
 	
+	@GetMapping("/crearcalendario")
+
+	public String crearcalendario(Model model) {
+		model.addAttribute("calendario", getcalendario());
+
+
+	return "crearcalendario";
+}
+}
 //    
 //@PostMapping
 //public CalendarioEntity agregarC(@RequestBody CalendarioModel p){
