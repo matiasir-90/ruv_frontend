@@ -35,8 +35,8 @@ public class CalendarioController {
 
 	}
 
-	@GetMapping("/calendario/crearcalendario")
-	public String crearcalendario(Model model) {
+	@GetMapping("/crearcalendario222")
+	public String crearcalendario() {
 		return "crearcalendario";
 	}
 
@@ -46,6 +46,15 @@ public class CalendarioController {
 		    uri=uri+"/${id}";
 		    CalendarioModel calendarioid = restTemplate.getForObject(uri, CalendarioModel.class);  
 		return calendarioid;
+	}
+
+	@GetMapping("/crearcalendario")
+	public String crearcalendario(Map<String, Object> model) {
+		CalendarioModel calendario = new CalendarioModel();
+		model.put("calendario", calendario);
+		model.put("accion", "guardar");
+
+		return "crearcalendario";
 	}
 
 }
