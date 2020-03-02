@@ -19,7 +19,7 @@ import com.ruv_front.tsb.Model.CalendarioModel;
 @Controller
 @RequestMapping(value = "/calendario" )
 public class CalendarioController {
-
+	private String uri = "http://localhost:8181/calendario";
     @GetMapping
     public String ViewCalendario(Model model){	   	
          model.addAttribute("calendarioList",getcalendario());
@@ -29,7 +29,6 @@ public class CalendarioController {
     
     public List<CalendarioModel> getcalendario()
 	{
-	    final String uri = "http://localhost:8181/calendario";
 	    RestTemplate restTemplate = new RestTemplate();
 	     
 	    List<CalendarioModel> result = restTemplate.getForObject(uri, List.class);	  
@@ -41,7 +40,6 @@ public class CalendarioController {
 
 
 	public CalendarioModel getcalendariobyid(int id) {
-	    String uri = "http://localhost:8181/calendario";
 		    RestTemplate restTemplate = new RestTemplate();
 		    uri=uri+"/${id}";
 		    CalendarioModel calendarioid = restTemplate.getForObject(uri, CalendarioModel.class);  
@@ -60,14 +58,12 @@ public class CalendarioController {
 	@PostMapping("/guardar")
 	public String guardar(@Validated({ CalendarioModel.class, Default.class }) CalendarioModel calendario, BindingResult result) {
 		if (result.hasErrors()) {
-			return "calendarioList";
+			return "redirect:/calendario";
 		}
-
-		String uri = "http://localhost:8181/calendario";
 	    RestTemplate restTemplate = new RestTemplate();
 	    restTemplate.postForEntity(uri, calendario, null);  
 	    
 	    
-		return "redirect:/calendarioList";
+		return "redirect:/calendario";
 	}
 }
