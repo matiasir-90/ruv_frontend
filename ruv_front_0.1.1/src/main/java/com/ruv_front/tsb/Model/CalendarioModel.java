@@ -36,5 +36,5 @@ public class CalendarioModel {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	
+	public CalendarioModel(int id,String calendarioDescripcion,Date fechaInicio,Date fechaFin) {}
 }

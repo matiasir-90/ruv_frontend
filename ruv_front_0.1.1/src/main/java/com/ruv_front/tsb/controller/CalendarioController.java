@@ -6,11 +6,14 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
-
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 import com.ruv_front.tsb.Model.CalendarioModel;
 
 @Controller
@@ -35,10 +38,7 @@ public class CalendarioController {
 
 	}
 
-	@GetMapping("/crearcalendario222")
-	public String crearcalendario() {
-		return "crearcalendario";
-	}
+
 
 	public CalendarioModel getcalendariobyid(int id) {
 	    String uri = "http://localhost:8181/calendario";
@@ -50,11 +50,24 @@ public class CalendarioController {
 
 	@GetMapping("/crearcalendario")
 	public String crearcalendario(Map<String, Object> model) {
+
 		CalendarioModel calendario = new CalendarioModel();
 		model.put("calendario", calendario);
 		model.put("accion", "guardar");
 
 		return "crearcalendario";
 	}
+	@PostMapping("/guardar")
+	public String guardar(@Validated({ CalendarioModel.class, Default.class }) CalendarioModel calendario, BindingResult result) {
+		if (result.hasErrors()) {
+			return "calendarioList";
+		}
 
+		String uri = "http://localhost:8181/calendario";
+	    RestTemplate restTemplate = new RestTemplate();
+	    restTemplate.postForEntity(uri, calendario, null);  
+	    
+	    
+		return "redirect:/calendarioList";
+	}
 }

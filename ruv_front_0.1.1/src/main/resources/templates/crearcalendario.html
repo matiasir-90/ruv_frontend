@@ -6,7 +6,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"	crossorigin="anonymous">
 </head>
 <body class="bg-dark">
-    <header th:replace="layout/layout::header"></header>
+    <header th:replace="layout/layout::head"></header>
    <div class="container bg-dark">
 		<div class="card bg-dark">
 			<div class="card-header">
@@ -14,34 +14,31 @@
 			</div>
 			<div class="card-body">
 				<form th:action="@{guardar}" th:object="${calendario}" method="post">
-					<!-- <input type="hidden" th:field="${producto.id}"> -->
 					<input type="hidden" th:field="*{id}" />
 
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Descripcion</label>
 						<div class="col-sm-6">
-							<!-- <input type="text" th:field="${producto.nombre}"> -->
 							<input type="text" th:field="*{calendarioDescripcion}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Fecha inicio</label>
 						<div class="col-sm-6">
-							<!-- <input type="text" th:field="${producto.codigo}"> -->
+							
 							<input type="date" th:field="*{fechaInicio}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Fecha Fin</label>
 						<div class="col-sm-6">
-							<!-- <input type="text" th:field="${producto.precio}"> -->
 							<input type="date" th:field="*{fechaFin}">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
 							<input type="submit" value="Crear Calendario"
-								class="btn btn-outline-primary"> <a th:href="@{calendarioList}"
+								class="btn btn-outline-primary"> <a th:href="@{/calendario}"
 								class="btn btn-outline-danger">Cancelar</a>
 						</div>
 					</div>
