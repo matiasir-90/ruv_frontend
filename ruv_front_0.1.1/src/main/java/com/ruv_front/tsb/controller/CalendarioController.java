@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
@@ -36,13 +37,12 @@ public class CalendarioController {
 	    return result; 
 
 	}
-
-
-
-	public CalendarioModel getcalendariobyid(int id) {
+		public static CalendarioModel getcalendariobyid(String string) {
 		    RestTemplate restTemplate = new RestTemplate();
-		    uri=uri+"/${id}";
-		    CalendarioModel calendarioid = restTemplate.getForObject(uri, CalendarioModel.class);  
+
+	        final String uri = "http://localhost:8181/calendario/" + string;
+		    CalendarioModel calendarioid = restTemplate.getForObject(uri, CalendarioModel.class); 
+		    System.out.println(calendarioid);
 		return calendarioid;
 	}
 
@@ -65,5 +65,34 @@ public class CalendarioController {
 	    
 	    
 		return "redirect:/calendario";
+	}
+
+    @GetMapping("/eliminar/{id}")
+    public String deletecalendario(@PathVariable("id") String id)
+ 
+    {
+        System.out.println(id);
+        
+        final String uri = "http://localhost:8181/calendario/" + id;
+	     
+	    RestTemplate restTemplate = new RestTemplate();
+	    restTemplate.delete ( uri );
+        
+        return "redirect:/calendario";
+    }
+    @GetMapping(path = {"/editar/{id}"})
+    public String ViewCalendariobyid(Model model){	   	
+         model.addAttribute("calendario",getcalendariobyid("{id}"));
+         return "editcalendario";
+    }
+    
+    public List<CalendarioModel> getcalendariobyid(@PathVariable("id") int id, Model model)
+	{
+
+	    RestTemplate restTemplate = new RestTemplate();
+	    
+	    final String uri = "http://localhost:8181/calendario/" + id;
+	    List<CalendarioModel> calendario = restTemplate.getForObject(uri, List.class);	  ;
+        return calendario;
 	}
 }

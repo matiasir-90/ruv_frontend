@@ -10,4 +10,5 @@ public class ruv_front {
     public static void main(String[] args) {
         SpringApplication.run(ruv_front.class, args);
     }
+    
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"	crossorigin="anonymous">
+</head>
+<body class="bg-dark">
+    <header th:replace="layout/layout::head"></header>
+   <div class="container bg-dark">
+		<div class="card bg-dark">
+			<div class="card-header">
+				<h3>Editar Calendario</h3>
+			</div>
+			<div class="card-body">
+				<form th:action="@{edit}" th:object="${calendario}" method="post">
+					<input type="hidden" th:field="*{id}" />
+
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Descripcion</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{calendarioDescripcion}" th:text="*{calendarioDescripcion}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Fecha inicio</label>
+						<div class="col-sm-6">
+							
+							<input type="text" th:field="*{fechaInicio}"  value="*{fechaInicio}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Fecha Fin</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{fechaFin}" th:text="*{fechaFin}">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-6">
+							<input type="submit" value="Editar Calendario"
+								class="btn btn-outline-primary"> <a th:href="@{/calendario}"
+								class="btn btn-outline-danger">Cancelar</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+    <footer th:replace="layout/layout::footer" class="bg-dark"></footer>
+</body>
+</html>

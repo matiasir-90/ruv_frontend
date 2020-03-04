@@ -3,11 +3,13 @@ package com.ruv_front.tsb.Model;
 import java.util.Date;
 
 
+
 public class CalendarioModel {
 
 	public CalendarioModel() {}
 	
 	private int id;
+
 	private String calendarioDescripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
