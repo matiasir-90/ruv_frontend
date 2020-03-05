@@ -21,6 +21,8 @@ import com.ruv_front.tsb.Model.CalendarioModel;
 @RequestMapping(value = "/calendario" )
 public class CalendarioController {
 	private String uri = "http://localhost:8181/calendario";
+	
+	//default 
     @GetMapping
     public String ViewCalendario(Model model){	   	
          model.addAttribute("calendarioList",getcalendario());
@@ -37,15 +39,7 @@ public class CalendarioController {
 	    return result; 
 
 	}
-		public static CalendarioModel getcalendariobyid(String string) {
-		    RestTemplate restTemplate = new RestTemplate();
-
-	        final String uri = "http://localhost:8181/calendario/" + string;
-		    CalendarioModel calendarioid = restTemplate.getForObject(uri, CalendarioModel.class); 
-		    System.out.println(calendarioid);
-		return calendarioid;
-	}
-
+//    alta calendario
 	@GetMapping("/crearcalendario")
 	public String crearcalendario(Map<String, Object> model) {
 
@@ -66,7 +60,7 @@ public class CalendarioController {
 	    
 		return "redirect:/calendario";
 	}
-
+//delete calendario
     @GetMapping("/eliminar/{id}")
     public String deletecalendario(@PathVariable("id") String id)
  
@@ -80,19 +74,25 @@ public class CalendarioController {
         
         return "redirect:/calendario";
     }
+    
+//    principal a editar 
     @GetMapping(path = {"/editar/{id}"})
-    public String ViewCalendariobyid(Model model){	   	
-         model.addAttribute("calendario",getcalendariobyid("{id}"));
+    public String ViewCalendariobyid(@PathVariable("id") int id,Model model){	   	
+      model.addAttribute("calendario",getcalendariobyid(id));
+	    System.out.println(getcalendariobyid(id));
          return "editcalendario";
     }
     
-    public List<CalendarioModel> getcalendariobyid(@PathVariable("id") int id, Model model)
+//    llama a calendario especifico
+    
+    public CalendarioModel getcalendariobyid(int id)
 	{
 
 	    RestTemplate restTemplate = new RestTemplate();
 	    
 	    final String uri = "http://localhost:8181/calendario/" + id;
-	    List<CalendarioModel> calendario = restTemplate.getForObject(uri, List.class);	  ;
+	    CalendarioModel calendario = restTemplate.getForObject(uri, CalendarioModel.class);	  
         return calendario;
 	}
+
 }

@@ -13,13 +13,13 @@
 				<h3>Editar Calendario</h3>
 			</div>
 			<div class="card-body">
-				<form th:action="@{edit}" th:object="${calendario}" method="post">
-					<input type="hidden" th:field="*{id}" />
+				<form th:action="@{editar}" th:object="${calendario}" method="post">
+					<input type="hidden" th:field="*{id}" value="*{id}"/>
 
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Descripcion</label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{calendarioDescripcion}" th:text="*{calendarioDescripcion}">
+							<input type="text" th:field="*{calendarioDescripcion}" value="*{calendarioDescripcion}" >
 						</div>
 					</div>
 					<div class="form-group row">
@@ -32,7 +32,7 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Fecha Fin</label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{fechaFin}" th:text="*{fechaFin}">
+							<input type="text" th:field="*{fechaFin}" value="*{fechaFin}">
 						</div>
 					</div>
 					<div class="form-group">

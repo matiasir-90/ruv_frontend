@@ -20,6 +20,11 @@ public class CalendarioModel {
 	public void setId(int id) {
 		this.id = id;
 	}
+	@Override
+	public String toString() {
+		return "CalendarioModel [id=" + id + ", calendarioDescripcion=" + calendarioDescripcion + ", fechaInicio="
+				+ fechaInicio + ", fechaFin=" + fechaFin + "]";
+	}
 	public String getCalendarioDescripcion() {
 		return calendarioDescripcion;
 	}

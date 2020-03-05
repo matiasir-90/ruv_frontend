@@ -5,13 +5,7 @@ server:
   port: 9876
   servlet:
     context-path: /miapp
-  
-spring:
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL57Dialect
-    hibernate:
-      ddl-auto: none
-  jackson.date-format: yyyy-MM-dd HH:mm:ss    
+     
 logging:
   level:
     org:
