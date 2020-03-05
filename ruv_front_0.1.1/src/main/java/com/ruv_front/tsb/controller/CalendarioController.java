@@ -1,6 +1,7 @@
 package com.ruv_front.tsb.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +80,7 @@ public class CalendarioController {
     @GetMapping(path = {"/editar/{id}"})
     public String ViewCalendariobyid(@PathVariable("id") int id,Model model){	   	
       model.addAttribute("calendario",getcalendariobyid(id));
-	    System.out.println(getcalendariobyid(id));
+      System.out.println(getcalendariobyid(id));
          return "editcalendario";
     }
     
@@ -89,10 +90,27 @@ public class CalendarioController {
 	{
 
 	    RestTemplate restTemplate = new RestTemplate();
+
+        
+        final String uri2 = "http://localhost:8181/calendario/" + id;
+	    CalendarioModel calendario2 = new CalendarioModel(); 
+	    calendario2=restTemplate.getForObject(uri2, CalendarioModel.class);	 
+	    System.out.println(uri2);
+	    System.out.println(calendario2);
+	    return calendario2;
 	    
-	    final String uri = "http://localhost:8181/calendario/" + id;
-	    CalendarioModel calendario = restTemplate.getForObject(uri, CalendarioModel.class);	  
-        return calendario;
+//	    final String uri2 = "http://localhost:8181/calendario/{id}";
+//	     
+//	    Map<Integer, Integer> params = new HashMap<Integer, Integer>();
+//	    params.put(id, id);
+//	     
+//	    RestTemplate restTemplate = new RestTemplate();
+//	    CalendarioModel calendario2 = new CalendarioModel(); 
+//	    calendario2=restTemplate.getForObject(uri2, CalendarioModel.class,params);	 
+//
+//	    System.out.println(id);
+//	    System.out.println(calendario2);
+//	    return calendario2;
 	}
 
 }
