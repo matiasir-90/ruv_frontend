@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -58,7 +60,6 @@ public class CalendarioController {
 	    RestTemplate restTemplate = new RestTemplate();
 	    restTemplate.postForEntity(uri, calendario, null);  
 	    
-	    
 		return "redirect:/calendario";
 	}
 //delete calendario
@@ -66,8 +67,6 @@ public class CalendarioController {
     public String deletecalendario(@PathVariable("id") String id)
  
     {
-        System.out.println(id);
-        
         final String uri = "http://localhost:8181/calendario/" + id;
 	     
 	    RestTemplate restTemplate = new RestTemplate();
@@ -78,39 +77,27 @@ public class CalendarioController {
     
 //    principal a editar 
     @GetMapping(path = {"/editar/{id}"})
-    public String ViewCalendariobyid(@PathVariable("id") int id,Model model){	   	
+    public String ViewCalendariobyid(@PathVariable("id") String id,Model model){	   	
       model.addAttribute("calendario",getcalendariobyid(id));
-      System.out.println(getcalendariobyid(id));
-         return "editcalendario";
+      return "editcalendario";
     }
     
 //    llama a calendario especifico
     
-    public CalendarioModel getcalendariobyid(int id)
+    public CalendarioModel getcalendariobyid(String id)
 	{
 
 	    RestTemplate restTemplate = new RestTemplate();
 
         
-        final String uri2 = "http://localhost:8181/calendario/" + id;
-	    CalendarioModel calendario2 = new CalendarioModel(); 
-	    calendario2=restTemplate.getForObject(uri2, CalendarioModel.class);	 
-	    System.out.println(uri2);
-	    System.out.println(calendario2);
-	    return calendario2;
+        final String uri2 = "http://localhost:8181/calendario/"+id;
+        
+         System.out.println(uri2);
+        CalendarioModel calendario3 = new CalendarioModel();
+       calendario3 = restTemplate.getForObject(uri2, CalendarioModel.class,id);
+        System.out.println(calendario3.getId());
+	    return calendario3;
 	    
-//	    final String uri2 = "http://localhost:8181/calendario/{id}";
-//	     
-//	    Map<Integer, Integer> params = new HashMap<Integer, Integer>();
-//	    params.put(id, id);
-//	     
-//	    RestTemplate restTemplate = new RestTemplate();
-//	    CalendarioModel calendario2 = new CalendarioModel(); 
-//	    calendario2=restTemplate.getForObject(uri2, CalendarioModel.class,params);	 
-//
-//	    System.out.println(id);
-//	    System.out.println(calendario2);
-//	    return calendario2;
 	}
 
 }
