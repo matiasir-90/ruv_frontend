@@ -86,16 +86,18 @@ public class CalendarioController {
     
     public CalendarioModel getcalendariobyid(String id)
 	{
-
 	    RestTemplate restTemplate = new RestTemplate();
 
         
-        final String uri2 = "http://localhost:8181/calendario/"+id;
+        final String uri2 = "http://localhost:8181/calendario/";
         
          System.out.println(uri2);
-        CalendarioModel calendario3 = new CalendarioModel();
-       calendario3 = restTemplate.getForObject(uri2, CalendarioModel.class,id);
-        System.out.println(calendario3.getId());
+//        CalendarioModel calendario3 = new CalendarioModel();
+//       calendario3 = restTemplate.getForObject(uri2, CalendarioModel.class);
+//        System.out.println(calendario3.getId());
+         
+         CalendarioModel calendario3 = restTemplate.getForObject(uri2+id, CalendarioModel.class);
+         System.out.println(calendario3);
 	    return calendario3;
 	    
 	}
