@@ -14,27 +14,29 @@
 			</div>
 			<div class="card-body">
 				<form th:action="@{guardar}" th:object="${calendario}" method="post">
-					<input type="hidden" th:field="*{id}" />
+					<input type="hidden" th:field="*{calendario_id}" />
 
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Descripcion</label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{calendarioDescripcion}">
+							<input type="text" th:field="*{calendario_desce}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Fecha inicio</label>
 						<div class="col-sm-6">
 							
-							<input type="text" th:field="*{fechaInicio}">
+							<input type="text" th:field="*{fecha_inicio}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Fecha Fin</label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{fechaFin}">
+							<input type="text" th:field="*{fecha_fin}">
 						</div>
 					</div>
+					
+		
 					<div class="form-group">
 						<div class="col-sm-6">
 							<input type="submit" value="Crear Calendario"

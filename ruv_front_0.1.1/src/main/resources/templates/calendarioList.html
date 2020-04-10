@@ -23,13 +23,13 @@
 					</thead>
 					<tbody>
 						<tr th:each="calendario: ${calendarioList}">
-							<td th:text="${calendario.id}"></td>
-							<td th:text="${calendario.calendarioDescripcion}"></td>
-							<td th:text="${calendario.fechaInicio}"></td>
-							<td th:text="${calendario.fechaFin}"></td>
-							<td><a th:href="@{/calendario/editar/} + ${calendario.id}"
+							<td th:text="${calendario.calendario_id}"></td>
+							<td th:text="${calendario.calendario_desce}"></td>
+							<td th:text="${calendario.fecha_inicio}"></td>
+							<td th:text="${calendario.fecha_fin}"></td>
+							<td><a th:href="@{/calendario/editar/} + ${calendario.calendario_id}"
 								th:text="'Editar'"  class="btn btn-primary"></a></td>
-							<td><a  th:href="@{/calendario/eliminar/} + ${calendario.id}"
+							<td><a  th:href="@{/calendario/eliminar/} + ${calendario.calendario_id}"
 								th:text="'Eliminar'" class="btn btn-danger" ></a></td>
 						</tr>
 					</tbody>
