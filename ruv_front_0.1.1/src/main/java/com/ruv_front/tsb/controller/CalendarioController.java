@@ -1,6 +1,5 @@
 package com.ruv_front.tsb.controller;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,27 +20,26 @@ import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 import com.ruv_front.tsb.Model.CalendarioModel;
 
 @Controller
-@RequestMapping(value = "/calendario" )
+@RequestMapping(value = "/calendario")
 public class CalendarioController {
 	private String uri = "http://localhost:8080/calendario";
-	
-	//default 
-    @GetMapping
-    public String ViewCalendario(Model model){	   	
-         model.addAttribute("calendarioList",getcalendario());
-         return "calendarioList";
-    }
 
-    
-    public List<CalendarioModel> getcalendario()
-	{
-	    RestTemplate restTemplate = new RestTemplate();
-	     
-	    List<CalendarioModel> result = restTemplate.getForObject(uri, List.class);	  
-	    System.out.println(result);
-	    return result; 
+	// default
+	@GetMapping
+	public String ViewCalendario(Model model) {
+		model.addAttribute("calendarioList", getcalendario());
+		return "calendarioList";
+	}
+
+	public List<CalendarioModel> getcalendario() {
+		RestTemplate restTemplate = new RestTemplate();
+
+		List<CalendarioModel> result = restTemplate.getForObject(uri, List.class);
+		System.out.println(result);
+		return result;
 
 	}
+
 //    alta calendario
 	@GetMapping("/crearcalendario")
 	public String crearcalendario(Map<String, Object> model) {
@@ -52,61 +50,53 @@ public class CalendarioController {
 
 		return "crearcalendario";
 	}
+
 	@PostMapping("/guardar")
-	public String guardar(@Validated({ CalendarioModel.class, Default.class }) CalendarioModel calendario, BindingResult result) {
+	public String guardar(@Validated({ CalendarioModel.class, Default.class }) CalendarioModel calendario,
+			BindingResult result) {
 		if (result.hasErrors()) {
 			return "redirect:/calendario";
 		}
-	    RestTemplate restTemplate = new RestTemplate();
-	    restTemplate.postForEntity(uri, calendario, null);  
-	    
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.postForEntity(uri, calendario, null);
+
 		return "redirect:/calendario";
 	}
-//delete calendario
-    @GetMapping("/eliminar/{id}")
-    public String deletecalendario(@PathVariable("id") String id)
- 
-    {
-        final String uri = "http://localhost:8080/calendario/" + id;
-	     
-	    RestTemplate restTemplate = new RestTemplate();
-	    restTemplate.delete ( uri );
-        
-        return "redirect:/calendario";
-    }
-    
-//    principal a editar 
-    @GetMapping(path = {"/editar/{id}"})
-    public String ViewCalendariobyid(@PathVariable("id") String id,Model model){	   	
-      model.addAttribute("calendario",getcalendariobyid(id));
-      return "editcalendario";
-    }
-    
-//    llama a calendario especifico
-    
-    public CalendarioModel getcalendariobyid(String id)
-	{
-	    RestTemplate restTemplate = new RestTemplate();
 
-<<<<<<< HEAD
-        
-        final String uri2 = "http://localhost:8080/calendario/";
-=======
-	    CalendarioModel calendario= new CalendarioModel(); 
-        final String uri2 = "http://localhost:8181/calendario/"+id;
->>>>>>> branch 'master' of https://github.com/matiasir-90/ruv_frontend.git
-        
-         System.out.println(uri2);
-         
-         CalendarioModel calendario3 = restTemplate.getForObject(uri2, CalendarioModel.class,id);
-         calendario.setId(calendario3.getId());
-         calendario.setCalendarioDescripcion(calendario3.getCalendarioDescripcion());
-         calendario.setFechaInicio(calendario3.getFechaInicio());
-         calendario.setFechaFin(calendario3.getFechaFin());
-         System.out.println(calendario3);
-         System.out.println(calendario);
-	    return calendario;
-	    
+//delete calendario
+	@GetMapping("/eliminar/{id}")
+	public String deletecalendario(@PathVariable("id") String id)
+
+	{
+		final String uri = "http://localhost:8080/calendario/" + id;
+
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.delete(uri);
+
+		return "redirect:/calendario";
+	}
+
+//    principal a editar 
+	@GetMapping(path = { "/editar/{id}" })
+	public String ViewCalendariobyid(@PathVariable("id") String id, Model model) {
+		model.addAttribute("calendario", getcalendariobyid(id));
+		return "editcalendario";
+	}
+
+//    llama a calendario especifico
+
+	public CalendarioModel getcalendariobyid(String id) {
+		RestTemplate restTemplate = new RestTemplate();
+
+		CalendarioModel calendario = new CalendarioModel();
+		final String uri2 = "http://localhost:8080/calendario/" + id;
+
+		System.out.println(uri2);
+
+		CalendarioModel calendario3 = restTemplate.getForObject(uri2, CalendarioModel.class, id);
+
+		return calendario3;
+
 	}
 
 }
