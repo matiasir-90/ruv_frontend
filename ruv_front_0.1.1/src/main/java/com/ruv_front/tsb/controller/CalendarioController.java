@@ -88,17 +88,24 @@ public class CalendarioController {
 	{
 	    RestTemplate restTemplate = new RestTemplate();
 
+<<<<<<< HEAD
         
         final String uri2 = "http://localhost:8080/calendario/";
+=======
+	    CalendarioModel calendario= new CalendarioModel(); 
+        final String uri2 = "http://localhost:8181/calendario/"+id;
+>>>>>>> branch 'master' of https://github.com/matiasir-90/ruv_frontend.git
         
          System.out.println(uri2);
-//        CalendarioModel calendario3 = new CalendarioModel();
-//       calendario3 = restTemplate.getForObject(uri2, CalendarioModel.class);
-//        System.out.println(calendario3.getId());
          
-         CalendarioModel calendario3 = restTemplate.getForObject(uri2+id, CalendarioModel.class);
+         CalendarioModel calendario3 = restTemplate.getForObject(uri2, CalendarioModel.class,id);
+         calendario.setId(calendario3.getId());
+         calendario.setCalendarioDescripcion(calendario3.getCalendarioDescripcion());
+         calendario.setFechaInicio(calendario3.getFechaInicio());
+         calendario.setFechaFin(calendario3.getFechaFin());
          System.out.println(calendario3);
-	    return calendario3;
+         System.out.println(calendario);
+	    return calendario;
 	    
 	}
 
