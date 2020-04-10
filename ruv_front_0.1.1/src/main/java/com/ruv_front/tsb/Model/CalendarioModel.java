@@ -9,7 +9,6 @@ public class CalendarioModel {
 	public CalendarioModel() {}
 	
 	private int id;
-
 	private String calendarioDescripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
@@ -20,11 +19,7 @@ public class CalendarioModel {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@Override
-	public String toString() {
-		return "CalendarioModel [id=" + id + ", calendarioDescripcion=" + calendarioDescripcion + ", fechaInicio="
-				+ fechaInicio + ", fechaFin=" + fechaFin + "]";
-	}
+
 	public String getCalendarioDescripcion() {
 		return calendarioDescripcion;
 	}
@@ -43,5 +38,10 @@ public class CalendarioModel {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	public CalendarioModel(int id,String calendarioDescripcion,Date fechaInicio,Date fechaFin) {}
+	public CalendarioModel(int id,String calendarioDescripcion,Date fechaInicio,Date fechaFin) {
+		this.id=id;
+		this.calendarioDescripcion=calendarioDescripcion;
+		this.fechaInicio=fechaInicio;
+		this.fechaFin=fechaFin;
+	}
 }
