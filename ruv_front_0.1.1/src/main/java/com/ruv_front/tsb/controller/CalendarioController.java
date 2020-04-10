@@ -23,7 +23,7 @@ import com.ruv_front.tsb.Model.CalendarioModel;
 @Controller
 @RequestMapping(value = "/calendario" )
 public class CalendarioController {
-	private String uri = "http://localhost:8181/calendario";
+	private String uri = "http://localhost:8080/calendario";
 	
 	//default 
     @GetMapping
@@ -67,7 +67,7 @@ public class CalendarioController {
     public String deletecalendario(@PathVariable("id") String id)
  
     {
-        final String uri = "http://localhost:8181/calendario/" + id;
+        final String uri = "http://localhost:8080/calendario/" + id;
 	     
 	    RestTemplate restTemplate = new RestTemplate();
 	    restTemplate.delete ( uri );
@@ -89,7 +89,7 @@ public class CalendarioController {
 	    RestTemplate restTemplate = new RestTemplate();
 
         
-        final String uri2 = "http://localhost:8181/calendario/";
+        final String uri2 = "http://localhost:8080/calendario/";
         
          System.out.println(uri2);
 //        CalendarioModel calendario3 = new CalendarioModel();
