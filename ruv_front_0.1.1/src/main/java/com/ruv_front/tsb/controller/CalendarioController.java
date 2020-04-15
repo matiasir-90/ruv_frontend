@@ -1,11 +1,8 @@
 package com.ruv_front.tsb.controller;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 import com.ruv_front.tsb.Model.CalendarioModel;
+
 
 @Controller
 @RequestMapping(value = "/calendario")
@@ -88,15 +86,32 @@ public class CalendarioController {
 	public CalendarioModel getcalendariobyid(String id) {
 		RestTemplate restTemplate = new RestTemplate();
 
-		CalendarioModel calendario = new CalendarioModel();
 		final String uri2 = "http://localhost:8080/calendario/" + id;
 
 		System.out.println(uri2);
 
-		CalendarioModel calendario3 = restTemplate.getForObject(uri2, CalendarioModel.class, id);
+		CalendarioModel calendario = restTemplate.getForObject(uri2, CalendarioModel.class, id);
 
-		return calendario3;
+		return calendario;
 
 	}
+	@GetMapping("/update/{id}")
+	public String updatelendario(@PathVariable("id") String id,@Validated({ CalendarioModel.class, Default.class }) CalendarioModel calendario,
+			BindingResult result) {
 
+		final String uri = "http://localhost:8080/calendario/" + id;
+//		if (result.hasErrors()) {
+//			return "redirect:/calendario";
+//		}
+//		calendario.setCalendario_desce(calendario.getCalendario_desce());
+//		calendario.setFecha_inicio(calendario.getFecha_inicio());
+//		calendario.setFecha_fin(calendario.getFecha_fin());
+		
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		
+		restTemplate.put(uri,calendario);
+		return "redirect:/calendario";
+	}
 }
