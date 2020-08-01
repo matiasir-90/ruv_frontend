@@ -6,10 +6,4 @@ server:
   servlet:
     context-path: /miapp
      
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: debug
-      
-  
+   

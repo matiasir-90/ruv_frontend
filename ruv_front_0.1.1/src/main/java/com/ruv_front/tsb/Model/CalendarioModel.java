@@ -1,8 +1,6 @@
 package com.ruv_front.tsb.Model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,12 +12,11 @@ public class CalendarioModel {
 	public CalendarioModel() {}
 	
 	private int calendario_id;
-
 	private String calendario_desce;
 	@DateTimeFormat(pattern="dd-MM-yyyy")
 	private LocalDate fecha_inicio;
 	@DateTimeFormat(pattern="dd-MM-yyyy")
-	private Date fecha_fin;
+	private LocalDate fecha_fin;
 	
 	public int getCalendario_id() {
 		return calendario_id;
@@ -42,12 +39,12 @@ public class CalendarioModel {
 		this.fecha_inicio = fecha_inicio;
 	}
 
-	public Date getFecha_fin() {
+	public LocalDate getFecha_fin() {
 //		SimpleDateFormat fecha_fin = new SimpleDateFormat("dd/MM/yyyy");
 		
 		return fecha_fin;
 	}
-	public void setFecha_fin(Date fecha_fin) {
+	public void setFecha_fin(LocalDate fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
 
