@@ -24,11 +24,11 @@ public class CalendarioController {
 	// default
 	@GetMapping
 	public String ViewCalendario(Model model) {
-		model.addAttribute("calendarioList", getcalendario());
+		model.addAttribute("calendarioList", getCalendario());
 		return "calendarioList";
 	}
 
-	public List<CalendarioModel> getcalendario() {
+	public List<CalendarioModel> getCalendario() {
 		RestTemplate restTemplate = new RestTemplate();
 
 		List<CalendarioModel> result = restTemplate.getForObject(uri, List.class);
@@ -76,13 +76,13 @@ public class CalendarioController {
 //    principal a editar 
 	@GetMapping(path = { "/editar/{id}" })
 	public String ViewCalendariobyid(@PathVariable("id") String id, Model model) {
-		model.addAttribute("calendario", getcalendariobyid(id));
+		model.addAttribute("calendario", getCalendariobyid(id));
 		return "editcalendario";
 	}
 
 //    llama a calendario especifico
 
-	public CalendarioModel getcalendariobyid(String id) {
+	public CalendarioModel getCalendariobyid(String id) {
 		RestTemplate restTemplate = new RestTemplate();
 
 		final String uri2 = "http://localhost:8080/calendario/" + id;

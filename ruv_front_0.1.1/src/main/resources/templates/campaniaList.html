@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body class="smoothscroll enable-animation">
+	<header th:replace="layout/layout::head" class="bg-dark"> </header>
+
+	<div class="container">
+		<div class="card bg-dark">
+			<div class="card-header">
+				<h3>Lista de Campañas</h3>
+			</div>
+			<div class="card-body">
+				<table class="table table-striped bg-secondary">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Descripcion</th>
+							<th>Fecha Alta</th>
+							<th>Fecha Baja</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="campania: ${campaniaList}">
+							<td th:text="${campania.campania_id}"></td>
+							<td th:text="${campania.campania_desce}"></td>
+							<td th:text="${campania.fecha_alta}"></td>
+							<td th:text="${campania.fecha_baja}"></td>
+							<td><a th:href="@{/campania/editar/} + ${campania.campania_id}"
+								th:text="'Editar'"  class="btn btn-primary"></a></td>
+							<td><a  th:href="@{/campania/eliminar/} + ${campania.campania_id}"
+								th:text="'Eliminar'" class="btn btn-danger" ></a></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5"><a th:href="@{/campania/crearcampania}" th:text="'campania Nuevo'" 
+								class="btn btn-primary btn-block"></a></td>
+						</tr>		
+							
+						
+					</tfoot>
+				</table>
+						</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout::footer" class="bg-dark" ></footer>
+</body>
+</html>
