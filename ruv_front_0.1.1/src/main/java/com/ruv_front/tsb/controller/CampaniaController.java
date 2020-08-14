@@ -39,7 +39,7 @@ public class CampaniaController {
 
 //    alta Campania
 	@GetMapping("/crearcampania")
-	public String crearCampania(Map<String, Object> model) {
+	public String crearcampania(Map<String, Object> model) {
 
 		CampaniaModel campania = new CampaniaModel();
 		model.put("campania", campania);
@@ -62,7 +62,7 @@ public class CampaniaController {
 
 //delete campania
 	@GetMapping("/eliminar/{id}")
-	public String deleteCampania(@PathVariable("id") String id)
+	public String deletecampania(@PathVariable("id") String id)
 
 	{
 		final String uri = "http://localhost:8080/campania/" + id;

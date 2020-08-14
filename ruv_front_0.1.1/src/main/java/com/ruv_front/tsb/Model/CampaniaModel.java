@@ -25,7 +25,7 @@ public class CampaniaModel {
 		this.campania_id = campania_id;
 	}
 	
-	public String getcampania_desce() {
+	public String getCampania_desce() {
 		return campania_desce;
 	}
 	public void setCampania_desce(String campania_desce) {
@@ -35,7 +35,7 @@ public class CampaniaModel {
 	public LocalDate getFecha_alta() {
 		return fecha_alta;
 	}
-	public void setFecha_inicio(LocalDate fecha_alta) {
+	public void setFecha_alta(LocalDate fecha_alta) {
 		this.fecha_alta = fecha_alta;
 	}
 
